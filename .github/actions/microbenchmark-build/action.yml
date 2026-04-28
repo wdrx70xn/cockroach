@@ -33,8 +33,9 @@ runs:
       if: inputs.ref == 'base'
       run: |
         set -e
-        NUM_COMMITS=${{ github.event.pull_request.commits }}          
-        MERGE_BASE=$(git rev-parse HEAD~${NUM_COMMITS})
+        NUM_COMMITS="${{ github.event.pull_request.commits }}"
+        if [ -z "$NUM_COMMITS" ]; then NUM_COMMITS=0; fi
+        MERGE_BASE=$(git rev-parse HEAD~${NUM_COMMITS} 2>/dev/null || git rev-parse HEAD)
         echo "merge_base=$MERGE_BASE" >> "$GITHUB_OUTPUT"
       shell: bash
     - name: Checkout base if needed
